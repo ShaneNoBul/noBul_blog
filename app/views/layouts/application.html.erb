@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Blog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+	  <title>Blog</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
 
-<%= yield %>
+		<div class="alert alert-success">
+			<% if signed_in? %>
+		      Signed in as: <%= current_user.email %><br>
+		      <%= link_to raw('<span class="fa fa-arrow-left"></span> Sign out'), sign_out_path, method: :delete, class: "btn btn-info" %>
+		    <% else %>
+		      <%= link_to 'Sign in', sign_in_path, class: "btn btn-info" %>
+		    <% end %>
+		</div>
 
-</body>
+	    <div id="flash">
+	      <% flash.each do |key, value| %>
+	        <div class="flash <%= key %>"><%= value %></div>
+	      <% end %>
+	    </div>
+
+		<%= yield %>
+
+	</body>
 </html>

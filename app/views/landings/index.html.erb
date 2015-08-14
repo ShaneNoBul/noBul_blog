@@ -1,0 +1,20 @@
+<%= link_to raw('<span class="fa fa-plus"></span> Create New Post'), new_post_path, class: "btn btn-info" %>
+
+<br><br>
+
+<table class="table table-striped">
+<% @posts.each do |post| %>
+	<tr>
+		<td>
+			Title: <%= post.title %> <br>
+			Description: <%= post.description %> <br>
+			Email: <%= post.user.email %> <br>
+			<%= link_to raw("Read More <span class='fa fa-arrow-right'></span>"), post, class: "btn btn-info" %>
+			<% if post.user_id == current_user.id %>
+				<%= link_to raw("<span class='fa fa-wrench'></span> Edit"), edit_post_path(post), class: "btn btn-info" %>
+				<%= link_to raw("<span class='fa fa-remove'></span> Delete"), post_path(post), method: :delete, class: "btn btn-danger" %>
+			<% end %>
+		</td>
+	<tr>
+<% end %>
+</table>

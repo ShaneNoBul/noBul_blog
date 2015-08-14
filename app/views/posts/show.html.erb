@@ -1,0 +1,8 @@
+<div class="container">
+	<%= link_to raw("<span class='fa fa-arrow-left'></span> Go Back"), root_path, class: "btn btn-info" %>
+	<br><br>
+	<h1><%= @post.title %></h1>
+	<h3><%= @post.description %></h3>
+	<hr>
+	<%= @post.post_body %>
+</div>
